@@ -2,15 +2,6 @@
 
 include("db_conn.php");
 
-// Hash user password
-function sha256_hash($password) {
-  $raw = $password;
-
-  $encrypted_result = hash('sha256', $raw);
-
-  return $encrypted_result;
-}
-
 // Check if username existed
 function check_user($username, $email, $mysqli) {
   $sql = "SELECT UserID FROM User WHERE UserName = ? OR Email = ?";
@@ -42,16 +33,11 @@ function check_user($username, $email, $mysqli) {
 
 function insert_data($username, $password, $email, $mysqli) {
 
-  $key = strval($password) + strval($username);
-
-  $encypted_pass = sha256_hash($key);
-
-  $sql = "INSERT INTO User (UserName, Password, Email) VALUES (?, ?, ?)";
+  $sql = "INSERT INTO User (UserName, Password, Email) VALUES (?, SHA1(?), ?)";
 
   $stmt = $mysqli->prepare($sql);
-  $stmt->bind_param('sss', $username, $encrypted_pass, $email);
+  $stmt->bind_param('sss', $username, $password, $email);
 
-  // Error occurs here
   $result = $stmt->execute();
 
   if ($result) {
@@ -63,15 +49,13 @@ function insert_data($username, $password, $email, $mysqli) {
 
 
 /* Uncomment for testing only */
-$usr = "test1";
-$pass = "test1";
-$email = "test1@catchee.com";
+//$usr = "test1";
+//$pass = "test1";
+//$email = "test1@catchee.com";
 
+//insert_data($usr, $pass, $email, $mysqli);
 
-
-insert_data($usr, $pass, $email, $mysqli);
-
-/*if (isset($_POST["submit_registration"]) && isset($_POST["username"]) && isset($_POST["password_init"]) && isset($_POST["email"])) {
+if (isset($_POST["submit_registration"]) && isset($_POST["username"]) && isset($_POST["password_init"]) && isset($_POST["email"])) {
 
   include("db_conn.php");
 
@@ -84,8 +68,8 @@ insert_data($usr, $pass, $email, $mysqli);
   }
 
   $mysqli->close();
-}*/
+}
 
-$mysqli->close();
+//$mysqli->close();
 
 ?>
