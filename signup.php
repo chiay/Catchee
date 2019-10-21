@@ -1,6 +1,7 @@
 <?php
 
 include("db_conn.php");
+include("credential_generator.php");
 
 // Check if username existed
 function check_user($username, $email, $mysqli) {
@@ -33,17 +34,23 @@ function check_user($username, $email, $mysqli) {
 
 function insert_data($username, $password, $email, $mysqli) {
 
-  $sql = "INSERT INTO User (UserName, Password, Email) VALUES (?, SHA1(?), ?)";
+  $sql = "INSERT INTO User (UserName, Password, Email, Token) VALUES (?, ?, ?, ?)";
+
+  $token = token_generator($username, $email);
+
+  $hash_pass = password_hash($password);
 
   $stmt = $mysqli->prepare($sql);
-  $stmt->bind_param('sss', $username, $password, $email);
+  $stmt->bind_param('ssss', $username, $hash_pass, $email, $token);
 
   $result = $stmt->execute();
 
   if ($result) {
     echo "<script type='text/javascript'>alert('Welcome to Catchee!');</script>" ;
+    return TRUE;
   } else {
     echo "<script type='text/javascript'>alert('Unable to register at this time.');</script>" ;
+    return FALSE;
   }
 }
 
@@ -59,16 +66,30 @@ if (isset($_POST["submit_registration"]) && isset($_POST["username"]) && isset($
 
   include("db_conn.php");
 
+  session_start();
+
   $usr = $_POST["username"];
   $pass = $_POST["password_init"];
   $email = $_POST["email"];
 
   if (check_user($usr, $email, $mysqli)) {
-    insert_data($usr, $pass, $email, $mysqli);
+    if(insert_data($usr, $pass, $email, $mysqli)) {
+      $_SESSION["login"] = "true";
+      $_SESSION["user"] = $usr;
+      $_SESSION["email"] = $email;
+
+      /* Redirect to page */
+      //header("Location: home.html"); <-- this may not work after javascript code
+      echo "<script>location.href='home.html';</script>";
+    }
   }
 
   $mysqli->close();
+
+  exit;
 }
+
+
 
 //$mysqli->close();
 
