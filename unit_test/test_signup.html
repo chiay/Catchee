@@ -7,14 +7,14 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <title>| TEST | Login - CATCHEE</title>
+  <title>| TEST | Sign up - CATCHEE</title>
 </head>
 
 
 <body>
 <!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">CATCHEE Login</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">CATCHEE Sign Up</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -50,22 +50,30 @@
 </nav>
 
 <!-- Form -->
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col">
     </div>
     <div class="col-8">
-      <form name="signup" action="" method="post">
+      <form name="signup" action="signup.php" method="post">
         <div class="form-group">
-          <label for="UsernameInput">Username/Email:*</label>
-          <input type="text" class="form-control" name="credential"/>
+          <label for="UsernameInput">Username:*</label>
+          <input type="text" class="form-control" name="username"/>
         </div>
         <div class="form-group">
           <label for="PasswordInitInput">Password:*</label>
-          <input type="password" class="form-control" name="password"/>
+          <input type="password" class="form-control" name="password_init"/>
         </div>
         <div class="form-group">
-          <input type="submit" class="btn btn-primary" name="submit_login" onclick=""/>
+          <label for="PasswordConfInput">Confirm Password:*</label><label id="pass_conf_error"></label>
+          <input type="password" class="form-control" name="password_conf" onchange="Validate_Password(document.signup.password_init, document.signup.password_conf)"/>
+        </div>
+        <div class="form-group">
+          <label for="EmailInput">E-mail:*</label>
+          <input type="email" class="form-control" name="email"/>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" name="submit_registration" onclick="Validate_Input(document.signup.username, document.signup.password_init, document.signup.password_conf, document.signup.email)"/>
         </div>
       </form>
     </div>
@@ -74,13 +82,10 @@
   </div>
 </div>
 
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="test_signup.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
-<?php
-  include("login.php");
-?>
 </html>
