@@ -46,7 +46,7 @@ function insert_data($username, $password, $email, $mysqli) {
   $result = $stmt->execute();
 
   if ($result) {
-    echo "<script type='text/javascript'>alert('Welcome to Catchee!');</script>" ;
+    //echo "<script type='text/javascript'>alert('Welcome to Catchee!');</script>" ;
     return TRUE;
   } else {
     echo "<script type='text/javascript'>alert('Unable to register at this time.');</script>" ;
@@ -66,21 +66,19 @@ if (isset($_POST["submit_registration"]) && isset($_POST["username"]) && isset($
 
   include("db_conn.php");
 
-  session_start();
-
   $usr = $_POST["username"];
   $pass = $_POST["password_init"];
   $email = $_POST["email"];
 
   if (check_user($usr, $email, $mysqli)) {
     if(insert_data($usr, $pass, $email, $mysqli)) {
-      $_SESSION["login"] = "true";
-      $_SESSION["user"] = $usr;
-      $_SESSION["email"] = $email;
+
+      /* Set cookie for one month */
+      setcookie("usr", token_generator($usr, $email), time() + (30 * 24 * 60 * 60));
 
       /* Redirect to page */
       //header("Location: home.html"); <-- this may not work after javascript code
-      echo "<script>location.href='home.html';</script>";
+      echo "<script>location.href='home.php';</script>";
     }
   }
 
@@ -88,7 +86,6 @@ if (isset($_POST["submit_registration"]) && isset($_POST["username"]) && isset($
 
   exit;
 }
-
 
 
 //$mysqli->close();

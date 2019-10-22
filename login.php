@@ -29,7 +29,7 @@ function check_user($credential, $password, $flag, $mysqli) {
         echo "<script type='text/javascript'>alert('Username/Email not registered.');</script>";
         exit;
       } else {
-        echo "<script type='text/javascript'>alert('Welcome back!');</script>";
+        //echo "<script type='text/javascript'>alert('Welcome back!');</script>";
         return $usercred;
       }
     } else {
@@ -63,27 +63,23 @@ if (isset($_POST["submit_login"]) && isset($_POST["credential"]) && isset($_POST
 
   include("db_conn.php");
 
-  session_start();
-
   $cred = $_POST["credential"];
   $pass = $_POST["password"];
 
   if (isEmail($cred)) {
     $r = check_user($cred, $pass, 1, $mysqli);
 
-    $_SESSION["login"] = "true";
-    $_SESSION["user"] = $r;
-    $_SESSION["email"] = $cred;
+    /* Set cookie for one month */
+    setcookie("usr", token_generator($r, $cred), time() + (30 * 24 * 60 * 60));
 
-    echo "<script>location.href='home.html';</script>";
+    echo "<script>location.href='home.php';</script>";
   } else {
     $r = check_user($cred, $pass, 0, $mysqli);
 
-    $_SESSION["login"] = "true";
-    $_SESSION["user"] = $cred;
-    $_SESSION["email"] = $r;
+    /* Set cookie for one month */
+    setcookie("usr", token_generator($cred, $r), time() + (30 * 24 * 60 * 60));
 
-    echo "<script>location.href='home.html';</script>";
+    echo "<script>location.href='home.php';</script>";
   }
 
   $mysqli->close();
