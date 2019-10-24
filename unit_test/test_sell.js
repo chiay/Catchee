@@ -37,20 +37,37 @@ function Location_Selection() {
   addr += ' <input type="text" class="form-control" name="ItemCountry"/>';
   addr += ' </div>';
 
-  var gps = '<div class="form-group">';
+  /* Uncomment for manually enter geolocation*/
+
+  /*var gps = '<div class="form-group">';
   gps += ' <label for="ItemGPSLat">Latitude:</label><br/>';
-  gps += ' <input type="text" class="form-control" name="ItemLatitude"/>';
-  gps += ' <label for="ItemGPSLong">Longtitude:</label><br/>';
-  gps += ' <input type="text" class="form-control" name="ItemLongtitude"/>';
-  gps += ' </div>';
+  gps += ' <input type="text" class="form-control" name="ItemLatitude" id="ItemLatitude"/>';
+  gps += ' <label for="ItemGPSLong">Longitude:</label><br/>';
+  gps += ' <input type="text" class="form-control" name="ItemLongitude" id="ItemLongitude"/>';
+  gps += ' </div>';*/
 
   $("input:radio[name='LocationRadio']").change(
     function() {
         $("#location").empty();
         if (this.checked && this.value == 'Address') {
+          $("#msg").empty();
           $("#location").append(addr);
         } else if (this.checked && this.value == 'GPS'){
-          $("#location").append(gps);
+          //$("#location").append(gps);
+          get_gps();
         }
     });
+}
+
+function get_gps() {
+
+  var geo = document.getElementById("msg");
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      geo.innerHTML = position.coords.latitude + " ; " + position.coords.longitude;
+    });
+  } else {
+    geo.innerHTML = "GPS not available.";
+  }
 }
