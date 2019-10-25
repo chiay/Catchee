@@ -24,7 +24,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="login" href="#">Login</a>
+            <a class="nav-link" id="login" data-toggle="modal" data-target="#LoginModal" href="#">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Help</a>
@@ -43,7 +43,7 @@
     <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="..." class="d-block w-100" alt="...">
+          <img src="logo.jpg" class="d-block w-100" alt="Logo">
         </div>
         <div class="carousel-item">
           <img src="..." class="d-block w-100" alt="...">
@@ -62,32 +62,38 @@
       </a>
     </div>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      Launch demo modal
-    </button>
-
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+    <form name="signup" action="login.php" method="post">
+      <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="LoginModalTitle">Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="UsernameInput">Username/Email:*</label>
+                <input type="text" class="form-control" name="credential"/>
+              </div>
+              <div class="form-group">
+                <label for="PasswordInitInput">Password:*</label>
+                <input type="password" class="form-control" name="password"/>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" class="btn btn-primary" name="submit_login" onclick=""/>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
+    <?php include("item_loader.php"); ?>
 
+    <!--
     <div class="card" style="width: 18rem;">
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
@@ -96,6 +102,7 @@
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
+    -->
 
 
     <!-- Optional JavaScript -->
