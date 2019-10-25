@@ -107,7 +107,18 @@ if (isset($_POST["submit_sell"]) && isset($_POST["ItemName"]) && isset($_POST["I
   $description = $_POST["ItemDescription"];
   $gps = $_POST["msg"];
   $postTime = get_time();
-  $address = "xxx St.";
+
+  $addr_1 = $_POST["ItemAddress1"];
+  $addr_2 = $_POST["ItemAddress2"];
+  $addr_city = $_POST["ItemCity"];
+  $addr_state = $_POST["ItemState"];
+  $addr_country = $_POST["ItemCountry"];
+
+  $address = $addr_1 . ", " .
+             $addr_2 . ", " .
+             $addr_city . ", " .
+             $addr_state . ", " .
+             $addr_country;
 
   $image_name = $mysqli->real_escape_string($_FILES["ItemImage"]["name"]);
   $image_data = file_get_contents($_FILES["ItemImage"]["tmp_name"]);
