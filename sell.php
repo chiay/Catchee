@@ -17,6 +17,25 @@ function get_time() {
   return strval(date("Y-m-d h:i:s", $ts));
 }
 
+function tag_to_int($tag) {
+  switch ($tag) {
+    case "Books":
+      return 1;
+    case "Clothes/Shoes":
+      return 2;
+    case "Electronic":
+      return 3;
+    case "Furniture":
+      return 4;
+    case "Toy":
+      return 5;
+    case "Transporation":
+      return 6;
+    default:
+      return 0;
+  }
+}
+
 function get_userid($mysqli) {
 
   $sql = "SELECT UserID FROM User WHERE Token = ?";
@@ -46,17 +65,17 @@ function get_userid($mysqli) {
   }
 }
 
-function insert_data($name, $tag, $price, $description, $gps, $picture, $postTime, $address, $mysqli) {
+function insert_data($name, $tag, $price, $description, $gps, $image_data, $image_name, $postTime, $address, $mysqli) {
 
-  $id = "2";
+  $id = get_userid($mysqli);
 
   $price = set_double($price);
 
-  $sql = "INSERT INTO Item (UserID, Name, Tag, Price, Description, GPS, PostTime, Address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+  $sql = "INSERT INTO Item (UserID, Name, Tag, Price, Description, GPS, ImageData, ImageName, PostTime, Address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   $stmt = $mysqli->prepare($sql);
-  $stmt->bind_param('issdssss', $id, $name, $tag, $price, $description, $gps, $postTime, $address);
-
+  $stmt->bind_param('issdssbsss', $id, $name, $tag, $price, $description, $gps, $image_data, $image_name, $postTime, $address);
+  $stmt->send_long_data(6, $image_data);
   $result = $stmt->execute();
 
   if ($result) {
@@ -69,25 +88,44 @@ function insert_data($name, $tag, $price, $description, $gps, $picture, $postTim
 }
 
 /* Uncomment for testing only */
-$name = "Microsoft Surface Pro 6";
+/*$name = "Microsoft Surface Pro 6";
 $tag= "Electronic";
 $price = "123.45";
 $description = "New in box";
 $gps = "44.565071;-123.277920";
-$picture = "";
 $postTime = get_time();
-$address = "xxx St.";
-
-insert_data($name, $tag, $price, $description, $gps, $picture, $postTime, $address, $mysqli);
+$address = "xxx St.";*/
 
 
 
-/*
-if (isset($_POST["submit_sell"]) && isset($_POST["ItemName"]) && isset($_POST["ItemDescription"]) && isset($_POST["ItemPrice"])) {
 
+if (isset($_POST["submit_sell"]) && isset($_POST["ItemName"]) && isset($_POST["ItemDescription"]) && isset($_POST["ItemPrice"]) && isset($_POST["ItemTag"])) {
+
+  $name = $_POST["ItemName"];
+  $tag = $_POST["ItemTag"];
+  $price = $_POST["ItemPrice"];
+  $description = $_POST["ItemDescription"];
+  $gps = $_POST["msg"];
+  $postTime = get_time();
+  $address = "xxx St.";
+
+  $image_name = $mysqli->real_escape_string($_FILES["ItemImage"]["name"]);
+  $image_data = file_get_contents($_FILES["ItemImage"]["tmp_name"]);
+  $image_type = $mysqli->real_escape_string($_FILES["ItemImage"]["type"]);
+
+  $tag = tag_to_int($tag);
+
+  if(substr($image_type, 0, 5) == "image") {
+
+    if (insert_data($name, $tag, $price, $description, $gps, $image_data, $image_name, $postTime, $address, $mysqli)) {
+
+    }
+  }
+
+  $mysqli->close();
+
+  exit;
 }
-*/
 
 
-$mysqli->close();
 ?>

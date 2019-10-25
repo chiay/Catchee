@@ -62,10 +62,13 @@
             <label for="ItemTagInput">Tag:*</label>
             <select class="form-control" id="ItemTag" name="ItemTag">
               <option>Please choose one</option>
+              <option>Books</option>
+              <option>Clothes/Shoes</option>
               <option>Electronic</option>
-              <option>Fashion</option>
-              <option>Home & Garden</option>
+              <option>Furniture</option>
               <option>Toy</option>
+              <option>Transportation</option>
+              <option>Others</option>
             </select>
           </div>
           <div class="form-check form-check-inline mb-3">
@@ -78,13 +81,13 @@
             <label class="form-check-label" for="ItemGPSRadioInput">GPS</label>
           </div>
           <div class="form-group">
-            <p id="msg"></p>
+            <p id="msg" name="msg"></p>
           </div>
           <div id="location" name="location">
           </div>
           <div class="form-group">
             <label for="ItemImageInput">Upload Image:</label>
-            <input type="file" class="form-control-file" id="ItemImage">
+            <input type="file" class="form-control-file" name="ItemImage" id="ItemImage">
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary" name="submit_sell" onclick=""/>
