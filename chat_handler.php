@@ -15,12 +15,12 @@ function load_data($user1, $user2, $mysqli) {
           echo '<div class="row my-3">';
           echo '<div class="col-6"></div>';
           echo '<div class="col-6">';
-          echo '<div class="float-right rounded-pill bg-primary px-5 py-2 text-white">' . $msg . '</div>';
+          echo '<div class="float-right rounded-pill bg-primary px-3 py-2 mx-3 text-white text-break">' . $msg . '</div>';
           echo '</div></div>';
         } else {
           echo '<div class="row my-3">';
           echo '<div class="col-6">';
-          echo '<div class="float-left rounded-pill border border-dark bg-light px-5 py-2 text-dark">' . $msg . '</div>';
+          echo '<div class="float-left rounded-pill bg-dark px-3 py-2 mx-3 text-white" text-break>' . $msg . '</div>';
           echo '</div>';
           echo '<div class="col-6"></div>';
           echo '</div>';
@@ -61,6 +61,13 @@ if (isset($_POST["MessageSend"]) || isset($_POST["key"])) {
 
   $mysqli->close();
 
+  exit;
+}
+
+if (isset($_POST["flag"])) {
+  include("db_conn.php");
+  load_data($usr1, $usr2, $mysqli);
+  $mysqli->close();
   exit;
 }
 
