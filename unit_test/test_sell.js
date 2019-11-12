@@ -10,6 +10,11 @@
   }
 }*/
 
+
+//document.getElementById("nav_list_sell").classList.add("active");
+//document.getElementById("nav_sell").innerHTML = "Sell<span class='sr-only'>(current)</span>";
+
+
 function isPrice(d) {
     var regExpression = /^(\d{1,3})?(,?\d{3})*(\.\d{2})?$/;
     if (!(d.value.match(regExpression))) {
@@ -65,7 +70,7 @@ function get_gps() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      geo.innerHTML = position.coords.latitude + " ; " + position.coords.longitude;
+      geo.innerHTML = "Lat: " + position.coords.latitude + ", Long: " + position.coords.longitude;
     });
   } else {
     geo.innerHTML = "GPS not available.";

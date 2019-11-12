@@ -58,10 +58,10 @@ $(document).ready(function() {
       success: function (data) {
         var len = data.length;
 
-        var usrid1 = data[len].userid1;
-        var usrid2 = data[len].userid2;
-        var msg_context = data[len].msg;
-        var dt = data[len].postTime;
+        var usrid1 = data[len-1].userid1;
+        var usrid2 = data[len-1].userid2;
+        var msg_context = data[len-1].msg;
+        var dt = data[len-1].postTime;
 
         var str = '<div class="row my-3">';
         str += '<div class="col-6"></div>';
