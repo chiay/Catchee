@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  load_recipients();
   load_data();
 
   var t = document.getElementById('MessageText');
@@ -21,8 +22,9 @@ $(document).ready(function() {
 
           var len = data.length;
 
-          var usrid1 = data[len-1].userid1;
-          var usrid2 = data[len-1].userid2;
+          var chatroomid = data[len-1].chatroomid;
+          var usrn1 = data[len-1].username1;
+          var usrn2 = data[len-1].username2;
           var msg_context = data[len-1].msg;
           var dt = data[len-1].postTime;
 
@@ -58,8 +60,9 @@ $(document).ready(function() {
       success: function (data) {
         var len = data.length;
 
-        var usrid1 = data[len-1].userid1;
-        var usrid2 = data[len-1].userid2;
+        var chatroomid = data[len-1].chatroomid;
+        var usrn1 = data[len-1].username1;
+        var usrn2 = data[len-1].username2;
         var msg_context = data[len-1].msg;
         var dt = data[len-1].postTime;
 
@@ -97,8 +100,9 @@ function load_data() {
       var len = data.length;
 
       for (var i = 0; i < len; ++i) {
-        var usrid1 = data[i].userid1;
-        var usrid2 = data[i].userid2;
+        var chatroomid = data[i].chatroomid;
+        var usrn1 = data[i].username1;
+        var usrn2 = data[i].username2;
         var msg_context = data[i].msg;
         var dt = data[i].postTime;
 
@@ -112,6 +116,33 @@ function load_data() {
       }
 
       scroll_bottom();
+    }
+  });
+}
+
+function load_recipients() {
+  $.ajax({
+    type: "POST",
+    url: "chat_handler.php",
+    dataType: "JSON",
+    data: {
+      flag: 2
+    },
+    success: function (data) {
+      var len = data.length;
+
+      for (var i = 0; i < len; ++i) {
+        var chatroomid = data[i].chatroomid;
+        var usrn1 = data[i].username1;
+        var usrn2 = data[i].username2;
+
+        var str = '<div class="row">';
+        str += '<div class="col">';
+        str += '<div class="rounded bg-light"><img class="ml-1 mr-3" src="logo_chat.svg" style="width:50px;height:50px;">' + usrn2 + '</div>';
+        str += '</div>';
+
+        $("#recipients").append(str);
+      }
     }
   });
 }
