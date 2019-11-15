@@ -1,0 +1,71 @@
+#btn1 {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.3s;
+}
+
+#btn1:hover {
+  background-color: red;
+  color: white;
+}
+
+
+#btn2 {
+  background-color: blue;
+  border: 1px solid #ababab;
+  border-radius: 20px;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+#btn2:hover {opacity: 0.1}
+
+
+
+
+
+.testbox {
+  float: left;
+  text-align: center;
+  width: 120px;
+  border: 1px solid gray;
+  margin: 4px;
+  padding: 6px;
+}
+
+
+#dynamicbutton {
+  height: 60px;
+  width: 60px;
+  border: none;
+  border-radius: 30px;
+  font-size: 36px;
+  background-color: #f67811;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#dynamicbutton:hover,
+#dynamicbutton:focus {
+  right: 27px;
+  bottom: 27px;
+  height: 66px;
+  width: 66px;
+  border-radius: 33px;
+  font-size: 40px;
+}
+
+#dynamicbutton:focus {
+  outline: none;
+}

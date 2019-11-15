@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="asset/botton/botton.css">
+
+<!-- for web application icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+</head>
+<body>
+
+<p> keyword:hover <br> fade in </p>
+<button id="btn1">button1</button>
+
+<p> fade out </p>
+<button id="btn2">button2</button>
+
+<p> <strong>display:none</strong> removes the element from the document. It does not take up any space.
+<br><strong>visibility:hidden</strong> hides the element, but it still takes up space in the layout.</p>
+
+<div class="testbox" id="testbox1">Box 1<br>
+  <img src="asset/images/bg1.jpg" alt="cat" style="width:100%"  >
+  <button onclick="removeElement()">Remove</button>
+</div>
+
+<div class="testbox" id="testbox2">Box 2<br>
+  <img src="asset/images/bg2.jpg" alt="cat" style="width:100%" >
+  <button onclick="changeVisibility()">Hide</button>
+</div>
+
+<div class="testbox">Box 3<br>
+  <img src="asset/images/bg3.jpg" alt="cat" style="width:100%" >
+  <button onclick="resetElement()">Reset All</button>
+</div>
+
+
+
+<div class="testbox"id="testbox4">Box 4<br>
+	<img src="asset/images/bg4.jpg" alt="cat" style="width:100%" >
+	<button onclick="removeElement2()" id="scroll-close" >&times;</button>
+			
+		
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+<p>use web application icons</p>
+
+<button style="font-size:24px">Button <i class="fa fa-times-circle"></i></button>
+<div class="fa fa-times-circle" style="font-size:48px;color:red"></div>
+
+
+<br><br><br><br>
+
+<p>dynamic fa fa-plus </p>
+<button type="button" id="dynamicbutton"><i class="fa fa-plus"></i></button>
+
+</body>
+
+
+<script src="asset/botton/botton.js" ></script>
+
+</html>
