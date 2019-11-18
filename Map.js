@@ -26,7 +26,7 @@ function load_items_on_maps() {
   return new Promise (function(resolve) {
     $.ajax({
       type: "POST",
-      url: "Map.php",
+      url: "map.php",
       dataType: "JSON",
       data: {
         flag: 3
