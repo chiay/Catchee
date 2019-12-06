@@ -3,6 +3,7 @@ var navLogin = document.getElementById("nav_login");
 var navListHome = document.getElementById("nav_list_home");
 var navListSell = document.getElementById("nav_list_sell");
 var navListChat = document.getElementById("nav_list_chat");
+var navListMap = document.getElementById("nav_list_map");
 var navListHelp = document.getElementById("nav_list_help");
 
 $(document).ready(function() {
@@ -21,6 +22,11 @@ function check_user() {
   str_chat += "<a class='nav-link' href='test_chat.html'>";
   str_chat += "<i class='fas fa-comments mr-1'></i>";
   str_chat += "Chat</a></li>";
+
+  var str_map = "<li class='nav-item mr-3' id='nav_list_map'>";
+  str_map += "<a class='nav-link' href='map.html'>";
+  str_map += "<i class='fas fa-map-marked-alt mr-1'></i>";
+  str_map += "Map</a></li>";
 
   $.ajax({
     type: "POST",
@@ -41,9 +47,10 @@ function check_user() {
         navSignup.innerHTML = "<i class='fas fa-sign-out-alt mr-1'></i>Sign Out";
         navSignup.href = "logout.php";
 
-        if (!navListSell && !navListChat){
+        if (!navListSell && !navListChat && !navListMap){
           $("#nav_list_home").after(str_sell);
           $("#nav_list_sell").after(str_chat);
+          $("#nav_list_chat").after(str_map);
         }
       }
     }

@@ -5,15 +5,15 @@ $(document).ready(function() {
     if(data) {
       var len = data.length;
       for (var i = 0; i < len; ++i) {
-        var Name = data[i].Name;
-        var Tag = data[i].Tag;
-        var Price = data[i].Price;
-        var Description = data[i].Description;
-        var GPS = data[i].GPS;
-        var Latitude = data[i].Latitude;
-        var Longitude = data[i].Longitude;
-        var PostTime = data[i].PostTime;
-        var Address = data[i].Address;
+        var name = data[i].Name;
+        var tag = data[i].Tag;
+        var price = data[i].Price;
+        var description = data[i].Description;
+        var gps = data[i].GPS;
+        var latitude = data[i].Latitude;
+        var longitude = data[i].Longitude;
+        var postTime = data[i].PostTime;
+        var address = data[i].Address;
       }
 
       initMap(data);
@@ -26,7 +26,7 @@ function load_items_on_maps() {
   return new Promise (function(resolve) {
     $.ajax({
       type: "POST",
-      url: "Map.php",
+      url: "map.php",
       dataType: "JSON",
       data: {
         flag: 3
@@ -67,17 +67,21 @@ function initMap(data) {
   });
   circle.bindTo('center', marker, 'position');
 
-  if(data) {
+  if (data) {
     var len = data.length;
+    var c = 0;
     for (var i = 0; i < len; ++i) {
       var name = data[i].Name;
       var lat = data[i].Latitude;
-      var lon = data[i].Longitute;
+      var lon = data[i].Longitude;
       if (lat && lon) {
+        c += 1;
+        console.log(c);
         setmarkers(lat, lon, map);
 
       }
     }
+
   }
 }
 
@@ -98,4 +102,3 @@ function setmarkers(name, lat, lon, map) {
   })
 
 }
-
