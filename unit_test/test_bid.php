@@ -91,6 +91,7 @@ $len = sizeof($data);
 //assert('2 < 1');
 //assert('$data[0]["BidID"] == 3');
 
+echo "Insert Assertion <br/>";
 // Insert
 assert('manipulate_data(1, 1, 3, 0.99, 0, $mysqli)');
 assert('manipulate_data(1, 1, 4, 1.99, 0, $mysqli)');
@@ -103,9 +104,20 @@ assert('manipulate_data(1, 21, 6, 3, 0, $mysqli)');
 assert('manipulate_data(1, 1, 20, .01, 0, $mysqli)');
 assert('manipulate_data(1, 100, 6, 99999, 0, $mysqli)');
 
+echo "Update Assertion <br/>";
+// Update
+assert('manipulate_data(2, 1, 0, 99.99, 1, $mysqli)');
+assert('manipulate_data(2, 2, 0, 88.99, 2, $mysqli)');
+assert('manipulate_data(2, 3, 0, 990.99, 3, $mysqli)');
+assert('manipulate_data(2, 4, 0, 550.99, 4, $mysqli)');
+
+// Update Error
+assert('manipulate_data(2, 200, 0, 10088.99, 200, $mysqli)');
+
+
 // Change 'assert_options(ASSERT_BAIL, false);' at line 4 to run the following line
 // Clear all data
-assert('manipulate_data(3, 0, 0, 0, 0, $mysqli)');
-alter_table_var($mysqli);
+//assert('manipulate_data(3, 0, 0, 0, 0, $mysqli)');
+//alter_table_var($mysqli);
 $mysqli->close();
 ?>
