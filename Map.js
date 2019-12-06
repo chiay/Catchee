@@ -70,21 +70,32 @@ function initMap(data) {
   if(data) {
     var len = data.length;
     for (var i = 0; i < len; ++i) {
+      var name = data[i].Name;
       var lat = data[i].Latitude;
       var lon = data[i].Longitute;
       if (lat && lon) {
         setmarkers(lat, lon, map);
+
       }
     }
   }
 }
 
-function setmarkers(lat, lon, map) {
+
+
+function setmarkers(name, lat, lon, map) {
 
   var marker = new google.maps.Marker({
     position:{lat:lat,lng:lon},
     map:map
   });
+  var InfoWindow = new google.maps.InfoWindow({
+    content:'<h4>' + name + '</h4>'
+  });
+
+  marker.addEventListener('click', function () {
+    InfoWindow.open(map, marker)
+  })
 
 }
 
