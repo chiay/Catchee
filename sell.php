@@ -29,7 +29,7 @@ function tag_to_int($tag) {
       return 4;
     case "Toy":
       return 5;
-    case "Transporation":
+    case "Transportation":
       return 6;
     default:
       return 0;
@@ -79,7 +79,7 @@ function insert_data($name, $tag, $price, $description, $gps, $image_data, $imag
   $result = $stmt->execute();
 
   if ($result) {
-    echo "<script type='text/javascript'>alert('Item Posted!');</script>" ;
+    //echo "<script type='text/javascript'>alert('Item Posted!');</script>" ;
     return TRUE;
   } else {
     echo "<script type='text/javascript'>alert('Unable to post item for sell.');</script>" ;
@@ -129,7 +129,7 @@ if (isset($_POST["submit_sell"]) && isset($_POST["ItemName"]) && isset($_POST["I
   if(substr($image_type, 0, 5) == "image") {
 
     if (insert_data($name, $tag, $price, $description, $gps, $image_data, $image_name, $postTime, $address, $mysqli)) {
-
+      echo "<script>location.href='test_sell_done.html';</script>";
     }
   }
 
