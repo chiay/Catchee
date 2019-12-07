@@ -19,22 +19,57 @@
 
     <body>
 
+      <!-- Navigation Bar -->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+          <img src="logo_full.svg" width="30" height="30" class="d-inline-block align-top"> CATCHEE
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item mr-3" id="nav_list_home">
+              <a class="nav-link" href="home.php"><i class="fas fa-home mr-1"></i>Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item mr-3" id="nav_list_help">
+              <a class="nav-link" href="#"><i class="fas fa-question-circle mr-1"></i>Help</a>
+            </li>
+            <li class="nav-item" id="nav_list_aboutus">
+              <a class="nav-link" href="#"><i class="fas fa-cat mr-1"></i>About Us</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item mr-3 active">
+              <a class="nav-link" id="nav_search" href="#" style="cursor:pointer;"><i class="fas fa-search mr-1"></i>Search<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item mr-3">
+              <a class="nav-link" id="nav_login" data-toggle="modal" data-target="#LoginModal"style="cursor:pointer;"><i class="fas fa-sign-in-alt mr-1"></i>Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav_signup" href="test_signup.html"><i class="fas fa-user mr-1"></i>Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+    <div class="container" style="margin-top:100px;">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <form>
-                    <div class="form-group">
-                        <input class="form-control" id="SearchBox" type="text" placeholder="Search" aria-label="Search">
-                        <p></p>
-                        <input type="button" class="btn btn-primary" onclick="search_submit()" value="Search">
-                    </div>
-                </form>
+              <center><h2 class="mb-3">Search</h2></center>
+              <form class="form-inline">
+                  <div class="form-group">
+                      <input class="form-control mr-2" id="SearchBox" type="text" placeholder="Search" aria-label="Search">
+                      <input type="button" class="btn btn-primary" onclick="search_submit();" value="Search">
+                  </div>
+              </form>
             </div>
             <div class="col-3"></div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-4" id="filter"> </div>
             <div class="col-8" id="result"></div>
         </div>
@@ -48,7 +83,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <!-- <script type="text/javascript" src="user_identifier.js"></script> -->
+    <script type="text/javascript" src="user_identifier.js"></script>
     <script type="text/javascript" src="search.js"></script>
 
     </body>
