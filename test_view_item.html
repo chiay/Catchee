@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#343a40">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+
+  <title>| TEST | Item - CATCHEE</title>
+</head>
+
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="logo_full.svg" width="30" height="30" class="d-inline-block align-top"> CATCHEE
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item mr-3" id="nav_list_home">
+          <a class="nav-link" href="home.php"><i class="fas fa-home mr-1"></i>Home</a>
+        </li>
+        <li class="nav-item mr-3" id="nav_list_help">
+          <a class="nav-link" href="#"><i class="fas fa-question-circle mr-1"></i>Help</a>
+        </li>
+        <li class="nav-item" id="nav_list_aboutus">
+          <a class="nav-link" href="#"><i class="fas fa-cat mr-1"></i>About Us</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav justify-content-end">
+        <li class="nav-item mr-3">
+          <a class="nav-link" id="nav_login" href="test_login.html"><i class="fas fa-sign-in-alt mr-1"></i>Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav_signup" href="test_signup.html"><i class="fas fa-user mr-1"></i>Sign Up</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <div class="row">
+      <h2 id="ItemName"></h2>
+    </div>
+
+    <div class="row">
+      <div class="col-4" style="width:400px;height:400px;">
+        <img src="" class="img-fluid" id="ItemImage"/>
+      </div>
+      <div class="col-8" id="ItemDetails">
+        <div class="mb-3"><b>Category:</b><span class="mx-2" id="ItemTag"></span></div>
+
+        <div class="mb-3"><b>Current Bid:</b><span class="mx-2" id="ItemBidPrice"></span></div>
+
+        <form class="form-inline mb-3" name="BidPriceForm" action="#" method="">
+          <input type="number" class="form-control" id="BidPriceInput" placeholder="Bid"/>
+          <input type="button" class="btn btn-primary mx-3" id="PlaceBid" data-toggle="modal" data-target="#bid_confirmation" value="Place Bid" onclick="get_price_input();"/>
+        </form>
+
+        <div class="mb-3"><b>Post Time:</b><span class="mx-2" id="ItemPostTime"></span></div>
+
+        <div><b>Own by:</b><span class="mx-2" id="ItemUser"></span><a href="">Chat with me!</a></div>
+
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="bid_confirmation" tabindex="-1" role="dialog" aria-labelledby="COnfirmationModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Are you sure you want to bid with this price?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h6>Price Entered: <span id="modal_bid_price"></span></h6>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" id="post_bid" onclick="place_bid();" data-dismiss="modal">Bid!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col" id="ItemDescription">
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="per_item_loader.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="user_identifier.js"></script>
+
+  <script type="text/javascript" src="bid.js"></script>
+
+
+</body>
+</html>
