@@ -2,6 +2,8 @@ var current_num_of_msg = 0;
 var me;
 var you;
 var my_id;
+var count = 0;
+var missing = 0;
 
 $(document).ready(function() {
 
@@ -13,8 +15,9 @@ $(document).ready(function() {
   });
 
   setInterval(function() {
+    //$("#messages").empty();
     load_data();
-  }, 2000);
+  }, 1000);
 
   var t = document.getElementById('MessageText');
   var b = document.getElementById('MessageSend');
@@ -38,6 +41,10 @@ $(document).ready(function() {
 
           var len = data.length;
 
+          if (count < len) {
+            missing = len - count;
+          }
+
           var chatroomid = data[len-1].chatroomid;
           var usrn1 = data[len-1].username1;
           var usrn2 = data[len-1].username2;
@@ -51,6 +58,7 @@ $(document).ready(function() {
           str += '</div></div>';
 
           $("#messages").append(str);
+          count += 1;
 
           scroll_bottom();
         }
@@ -121,7 +129,7 @@ function load_data() {
       if (data) {
         var len = data.length;
 
-        for (var i = 0; i < len; ++i) {
+        for (var i = count; i < len; ++i) {
           var chatroomid = data[i].chatroomid;
           var usrn1 = data[i].username1;
           var usrn2 = data[i].username2;
@@ -148,6 +156,7 @@ function load_data() {
 
           $("#messages").append(str);
         }
+        count = len;
       }
 
       scroll_bottom();
