@@ -59,6 +59,14 @@ function initMap(data) {
     map:map
   });
 
+  var infowindow = new google.maps.InfoWindow({
+    content:'Current location'
+  });
+
+  marker.addListener('click', function(e) {
+    infowindow.open(map, marker);
+  });
+
 
   var circle = new google.maps.Circle({
     map: map,
@@ -93,12 +101,12 @@ function setmarkers(name, lat, lon, map) {
     position:{lat:lat,lng:lon},
     map:map
   });
-  var InfoWindow = new google.maps.InfoWindow({
+  var infowindow = new google.maps.InfoWindow({
     content:'<h4>' + name + '</h4>'
   });
 
-  marker.addEventListener('click', function () {
-    InfoWindow.open(map, marker)
-  })
+  marker.addListener('click', function(e) {
+    infowindow.open(map, marker);
+  });
 
 }
