@@ -12,6 +12,7 @@ function load_items($mysqli) {
     if ($result_bind) {
       while ($stmt->fetch()) {
         $return_arr[] = array(
+          "ID" => $ItemID,
           "Name" => $Name,
           "Tag" => $Tag,
           "Price" => $Price,

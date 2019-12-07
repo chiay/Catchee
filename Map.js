@@ -59,14 +59,6 @@ function initMap(data) {
     map:map
   });
 
-  var infowindow = new google.maps.InfoWindow({
-    content:'Current location'
-  });
-
-  marker.addListener('click', function(e) {
-    infowindow.open(map, marker);
-  });
-
 
   var circle = new google.maps.Circle({
     map: map,
@@ -79,30 +71,30 @@ function initMap(data) {
     var len = data.length;
     var c = 0;
     for (var i = 0; i < len; ++i) {
+      var id = data[i].ID;
       var name = data[i].Name;
+      var price = data[i].Price;
       var lat = data[i].Latitude;
       var lon = data[i].Longitude;
       if (lat && lon) {
         c += 1;
         console.log(c);
-        setmarkers(lat, lon, map);
-
+        setmarkers(lat, lon, map, id, name, price);
       }
     }
 
   }
 }
 
-
-
-function setmarkers(name, lat, lon, map) {
+function setmarkers(lat, lon, map, id, name, price) {
 
   var marker = new google.maps.Marker({
     position:{lat:lat,lng:lon},
     map:map
   });
+
   var infowindow = new google.maps.InfoWindow({
-    content:'<h4>' + name + '</h4>'
+    content:'<h6>' + '<a href="test_view_item.html?itemid=' + id + '</a>' + '">' + name + ': $' + price + '</h6>'
   });
 
   marker.addListener('click', function(e) {
