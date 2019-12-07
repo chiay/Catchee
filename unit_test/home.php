@@ -37,6 +37,9 @@
         </ul>
         <ul class="navbar-nav justify-content-end">
           <li class="nav-item mr-3">
+            <a class="nav-link" id="nav_search" style="cursor:pointer;"><i class="fas fa-search mr-1"></i>Search</a>
+          </li>
+          <li class="nav-item mr-3">
             <a class="nav-link" id="nav_login" data-toggle="modal" data-target="#LoginModal"style="cursor:pointer;"><i class="fas fa-sign-in-alt mr-1"></i>Login</a>
           </li>
           <li class="nav-item">
@@ -115,6 +118,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="user_identifier.js"></script>
+    <script type="text/javascript" src="set_session.js"></script>
 
   </body>
 </html>
