@@ -49,7 +49,24 @@
       </div>
     </nav>
 
-    <img src="midnight.png" style="width:100%;height:500px;">
+    <div class="w3-content" style="max-width:auto; max-height:auto; margin-top:46px">
+
+      <div class="mySlides w3-display-container w3-center">
+        <img src="bg1.png" style="width:100%">
+        <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+        </div>
+      </div>
+      <div class="mySlides w3-display-container w3-center">
+        <img src="bg2.png" style="width:100%">
+        <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+        </div>
+      </div>
+      <div class="mySlides w3-display-container w3-center">
+        <img src="bg3.png" style="width:100%">
+        <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+        </div>
+      </div>
+    </div>
 
     <!-- Modal -->
     <form name="signup" action="login.php" method="post">
@@ -116,6 +133,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src = "carousel.js"></script>
 
     <script type="text/javascript" src="user_identifier.js"></script>
     <script type="text/javascript" src="set_session.js"></script>
