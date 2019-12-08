@@ -46,9 +46,15 @@ function load_bid() {
 }
 
 function place_bid() {
-  const bid_price = document.getElementById("BidPriceInput").value;
+  var bid_price_input = document.getElementById("BidPriceInput");
+  var item_bid_price = document.getElementById("ItemBidPrice");
+  if (bid_price_input.value <= parseInt(item_bid_price.innerHTML.split(" ")[1])) {
+    alert("Your bid price is lower than the current price! Please increase your bid price.");
+    bid_price_input.value = "";
+    return;
+  }
   console.log(my_id);
-  console.log(bid_price);
+  console.log(bid_price_input.value);
   $.ajax({
     type: "POST",
     url: "bid.php",
@@ -57,14 +63,12 @@ function place_bid() {
       flag: 1,
       itemID: parseInt(window.location.href.split('=')[1]),
       userID: my_id,
-      price: bid_price
+      price: bid_price_input.value
     },
     success: function (data) {
-      alert("Done post!");
-      var bid_price_input = document.getElementById("BidPriceInput");
+      //alert("Done post!");
+      item_bid_price.innerHTML = '$ ' + bid_price_input.value;
       bid_price_input.value = "";
-      var item_bid_price = document.getElementById("ItemBidPrice");
-      item_bid_price.innerHTML = '$ ' + bid_price;
     },
     error: function (e) {
       console.log(e[0].itemid + e[0].userid + e[0].price);
