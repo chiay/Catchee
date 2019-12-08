@@ -91,17 +91,23 @@ $len = sizeof($data);
 //assert('2 < 1');
 //assert('$data[0]["BidID"] == 3');
 
+/* $flag == 1 for insert
+ * $flag == 2 for update_data
+ * $flag == 3 for delete
+ * manipulate_data($flag, $iid, $uid, $price, $bid, $mysqli)
+ */
+
 echo "Insert Assertion <br/>";
 // Insert
-assert('manipulate_data(1, 1, 3, 0.99, 0, $mysqli)');
-assert('manipulate_data(1, 1, 4, 1.99, 0, $mysqli)');
-assert('manipulate_data(1, 1, 5, 2.00, 0, $mysqli)');
-assert('manipulate_data(1, 1, 6, 3, 0, $mysqli)');
+assert('manipulate_data(1, 4, 3, 0.99, 0, $mysqli)');
+assert('manipulate_data(1, 4, 4, 1.99, 0, $mysqli)');
+assert('manipulate_data(1, 4, 5, 2.00, 0, $mysqli)');
+assert('manipulate_data(1, 4, 6, 3, 0, $mysqli)');
 
 // Insert Error
-assert('manipulate_data(1, 1, 11, 3, 0, $mysqli)');
-assert('manipulate_data(1, 21, 6, 3, 0, $mysqli)');
-assert('manipulate_data(1, 1, 20, .01, 0, $mysqli)');
+assert('manipulate_data(1, 4, 11, 3, 0, $mysqli)');
+assert('manipulate_data(1, 99, 6, 3, 0, $mysqli)');
+assert('manipulate_data(1, 4, 20, .01, 0, $mysqli)');
 assert('manipulate_data(1, 100, 6, 99999, 0, $mysqli)');
 
 echo "Update Assertion <br/>";
@@ -112,12 +118,12 @@ assert('manipulate_data(2, 3, 0, 990.99, 3, $mysqli)');
 assert('manipulate_data(2, 4, 0, 550.99, 4, $mysqli)');
 
 // Update Error
-assert('manipulate_data(2, 200, 0, 10088.99, 200, $mysqli)');
+assert('manipulate_data(2, 200, 0, 10088.99, 2000, $mysqli)');
 
 
 // Change 'assert_options(ASSERT_BAIL, false);' at line 4 to run the following line
 // Clear all data
-//assert('manipulate_data(3, 0, 0, 0, 0, $mysqli)');
-//alter_table_var($mysqli);
+assert('manipulate_data(3, 0, 0, 0, 0, $mysqli)');
+alter_table_var($mysqli);
 $mysqli->close();
 ?>
